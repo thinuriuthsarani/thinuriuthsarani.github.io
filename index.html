@@ -1,571 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thinuri Uthsarani | Data Science Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thinuri Uthsarani | Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b12;
+  --bg2:#0e1220;
+  --bg3:#131826;
+  --card:#111827;
+  --card2:#161e2e;
+  --border:#1e2d4a;
+  --border2:#253656;
+  --accent:#4f8ef7;
+  --accent2:#3a7cf5;
+  --accent-glow:rgba(79,142,247,0.18);
+  --green:#22c55e;
+  --white:#f0f4ff;
+  --muted:#6b7fa3;
+  --muted2:#8899b8;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 
-    :root {
-      --bg:       #090909;
-      --bg-2:     #111111;
-      --bg-3:     #181818;
-      --bg-4:     #202020;
-      --border:   #2a2a2a;
-      --border-hi:#3a3a3a;
-      --white:    #ffffff;
-      --off:      #e0e0e0;
-      --muted:    #888888;
-      --faint:    #555555;
-      --accent:   #c8a96e;
-      --accent-d: #a07840;
-    }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:64px;
+  background:rgba(8,11,18,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--accent);letter-spacing:0.5px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{
+  font-size:13px;color:var(--muted2);text-decoration:none;font-weight:500;
+  letter-spacing:0.3px;transition:color 0.2s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--muted2);border-radius:2px;transition:all 0.3s}
 
-    html { scroll-behavior: smooth; }
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:100px 5% 60px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 65% 55% at 15% 55%,rgba(79,142,247,0.08) 0%,transparent 65%),
+             radial-gradient(ellipse 45% 40% at 85% 25%,rgba(34,197,94,0.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(79,142,247,0.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(79,142,247,0.025) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;
+}
+.hero-content{max-width:680px;position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);
+  color:var(--green);font-size:12px;font-weight:500;letter-spacing:0.5px;
+  padding:6px 14px;border-radius:20px;margin-bottom:28px;
+  animation:fadeUp 0.6s ease both;
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero-greeting{
+  font-size:15px;color:var(--accent);font-family:var(--mono);
+  margin-bottom:12px;letter-spacing:0.5px;animation:fadeUp 0.7s 0.1s ease both;
+}
+.hero-name{
+  font-size:clamp(2.4rem,6vw,4rem);font-weight:700;color:var(--white);
+  line-height:1.15;margin-bottom:16px;letter-spacing:-1px;
+  animation:fadeUp 0.7s 0.2s ease both;
+}
+.hero-name span{color:var(--accent)}
+.hero-role{font-size:1.05rem;color:var(--muted2);margin-bottom:24px;font-weight:400;animation:fadeUp 0.7s 0.3s ease both}
+.hero-desc{
+  font-size:15px;color:var(--muted);line-height:1.85;
+  max-width:540px;margin-bottom:36px;animation:fadeUp 0.7s 0.4s ease both;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s ease both}
+.btn-primary{
+  display:inline-block;padding:12px 28px;background:var(--accent);color:#fff;
+  border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;
+  transition:all 0.25s;letter-spacing:0.3px;
+}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,142,247,0.35)}
+.btn-ghost{
+  display:inline-block;padding:12px 28px;background:transparent;color:var(--muted2);
+  border:1px solid var(--border2);border-radius:8px;font-size:14px;font-weight:500;
+  text-decoration:none;transition:all 0.25s;letter-spacing:0.3px;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--white);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;margin-top:52px;flex-wrap:wrap;animation:fadeUp 0.7s 0.6s ease both}
+.stat-number{font-size:1.9rem;font-weight:700;color:var(--white);font-family:var(--mono)}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--off);
-      line-height: 1.7;
-      font-size: 15px;
-      overflow-x: hidden;
-    }
+/* SECTION */
+.section{padding:84px 5%}
+.section-inner{max-width:960px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-0.5px}
+.section-line{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:44px}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes lineGrow {
-      from { width: 0; }
-      to   { width: 40px; }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
-    }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text{font-size:15px;color:var(--muted2);line-height:1.9}
+.about-text p{margin-bottom:14px}
+.about-cards{display:flex;flex-direction:column;gap:14px}
+.about-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;gap:14px;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.about-card:hover{border-color:var(--accent);transform:translateX(5px)}
+.about-card-icon{
+  width:38px;height:38px;border-radius:8px;background:var(--accent-glow);
+  border:1px solid rgba(79,142,247,0.2);display:flex;align-items:center;
+  justify-content:center;font-size:17px;flex-shrink:0;
+}
+.about-card-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px}
+.about-card-value{font-size:14px;font-weight:500;color:var(--white)}
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.skill-block{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:22px 24px;transition:border-color 0.2s,transform 0.2s;
+}
+.skill-block:hover{border-color:var(--border2);transform:translateY(-3px)}
+.skill-block-title{
+  font-size:11px;font-weight:600;color:var(--accent);
+  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.skill-block-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{
+  font-size:13px;color:var(--muted2);background:var(--bg3);
+  border:1px solid var(--border);padding:5px 13px;border-radius:6px;
+  transition:all 0.2s;
+}
+.skill-tag:hover{border-color:var(--accent);color:var(--white);background:var(--accent-glow)}
 
-    header {
-      background: var(--bg);
-      padding: 96px 20px 76px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      animation: fadeIn 1s ease both;
-    }
+/* EDUCATION TIMELINE */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:36px;opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
+.tl-item.visible{opacity:1;transform:translateY(0)}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{
+  content:'';position:absolute;left:-32px;top:8px;width:9px;height:9px;
+  border-radius:50%;background:var(--accent);border:2px solid var(--bg2);
+  box-shadow:0 0 0 4px rgba(79,142,247,0.15);
+}
+.tl-year{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:8px;letter-spacing:0.5px}
+.tl-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 22px;transition:border-color 0.2s;
+}
+.tl-card:hover{border-color:var(--border2)}
+.tl-degree{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.tl-institution{font-size:13px;color:var(--accent);margin-bottom:10px}
+.tl-courses{font-size:13px;color:var(--muted);line-height:1.75}
 
-    .monogram {
-      width: 76px; height: 76px;
-      border: 1px solid var(--border-hi);
-      background: var(--bg-3);
-      color: var(--accent);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 26px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.project-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px 24px 20px;transition:all 0.25s;position:relative;overflow:hidden;
+}
+.project-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.project-card:hover{border-color:var(--border2);transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,0.45)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-card.wide{grid-column:1/-1}
+.project-num{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:14px;letter-spacing:1px}
+.project-name{font-size:16px;font-weight:600;color:var(--white);margin-bottom:10px}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.stack-pill{
+  font-size:11px;font-weight:500;color:var(--accent);
+  background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.2);
+  padding:3px 10px;border-radius:20px;font-family:var(--mono);letter-spacing:0.3px;
+}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.78}
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -1px;
-      margin-bottom: 6px;
-      animation: fadeUp 0.8s 0.35s ease both;
-    }
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+.cert-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;display:flex;align-items:flex-start;gap:12px;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.cert-item:hover{border-color:var(--border2);transform:translateX(5px)}
+.cert-icon{
+  width:32px;height:32px;border-radius:7px;flex-shrink:0;
+  background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.cert-name{font-size:13px;font-weight:500;color:var(--white);line-height:1.4}
+.cert-org{font-size:12px;color:var(--muted);margin-top:3px}
+.award-block{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px;display:flex;align-items:center;gap:20px;
+  max-width:500px;transition:border-color 0.2s;
+}
+.award-block:hover{border-color:rgba(250,204,21,0.35)}
+.award-icon-wrap{
+  width:52px;height:52px;border-radius:12px;flex-shrink:0;
+  background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.award-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px}
+.award-sub{font-size:13px;color:var(--muted)}
 
-    .header-rule {
-      height: 1px;
-      background: var(--accent);
-      width: 0;
-      margin: 16px auto;
-      animation: lineGrow 0.9s 0.6s ease forwards;
-    }
+/* REFERENCES */
+.refs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ref-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:22px 24px;transition:border-color 0.2s;
+}
+.ref-card:hover{border-color:var(--border2)}
+.ref-initials{
+  width:44px;height:44px;border-radius:10px;background:var(--accent-glow);
+  border:1px solid rgba(79,142,247,0.2);display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:600;color:var(--accent);
+  margin-bottom:14px;font-family:var(--mono);
+}
+.ref-name{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.ref-role{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.ref-contacts{display:flex;flex-direction:column;gap:6px}
+.ref-contacts a{font-size:13px;color:var(--accent);text-decoration:none;transition:color 0.2s}
+.ref-contacts a:hover{color:var(--white)}
 
-    header .subtitle {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 34px;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
+/* CONTACT */
+.contact-chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px}
+.chip{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);
+  color:var(--muted2);padding:12px 20px;border-radius:10px;
+  font-size:14px;text-decoration:none;transition:all 0.2s;
+}
+.chip:hover{border-color:var(--accent);color:var(--white);transform:translateY(-2px)}
 
-    .contact-row {
-      display: flex; flex-wrap: wrap;
-      gap: 8px; justify-content: center;
-      animation: fadeUp 0.8s 0.7s ease both;
-    }
-    .contact-row a, .contact-row span {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent;
-      border: 1px solid var(--border-hi);
-      color: var(--muted);
-      padding: 7px 16px;
-      font-size: 12px;
-      letter-spacing: 0.3px;
-      text-decoration: none;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-    .contact-row a:hover {
-      color: var(--white);
-      border-color: var(--accent);
-      background: rgba(200,169,110,0.05);
-    }
-    .dot {
-      width: 5px; height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;color:var(--muted);font-size:13px}
+footer span{color:var(--accent)}
 
-    nav {
-      background: var(--bg-2);
-      border-bottom: 1px solid var(--border);
-      padding: 0 20px;
-      display: flex; justify-content: center;
-      position: sticky; top: 0; z-index: 100;
-    }
-    nav a {
-      color: var(--faint);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 15px 16px;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    nav a:hover, nav a.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
 
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    main { padding: 64px 0 84px; }
-    section { margin-bottom: 60px; }
-
-    .grid-two {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-      gap: 14px;
-    }
-
-    @media (max-width: 680px) {
-      .grid-two { grid-template-columns: 1fr; }
-      header h1 { font-size: 1.9rem; }
-      nav a { padding: 15px 10px; font-size: 9px; letter-spacing: 1px; }
-    }
-
-    .section-title {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      padding: 26px 28px;
-      transition: border-color 0.3s;
-    }
-    .card:hover { border-color: var(--border-hi); }
-
-    .profile-text {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.95;
-    }
-
-    .skill-cat {
-      margin-bottom: 20px;
-    }
-    .skill-cat:last-child { margin-bottom: 0; }
-    .skill-cat-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 10px;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
-    .tag {
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      color: var(--off);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 5px 13px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
-    .tag.soft { background: transparent; color: var(--muted); }
-
-    .edu-item {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .edu-item:first-child { padding-top: 0; }
-    .edu-header {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 12px; flex-wrap: wrap;
-      margin-bottom: 5px;
-    }
-    .edu-degree { font-weight: 600; color: var(--white); font-size: 15px; }
-    .edu-year {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 1px; color: var(--accent);
-      white-space: nowrap; padding-top: 2px;
-    }
-    .edu-institution { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
-    .edu-courses { color: var(--faint); font-size: 13px; line-height: 1.7; }
-
-    .project-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      padding: 26px 28px;
-      height: 100%;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    .project-num {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 2px; color: var(--faint);
-      margin-bottom: 10px;
-    }
-    .project-title {
-      font-size: 16px; font-weight: 600;
-      color: var(--white); margin-bottom: 12px; line-height: 1.4;
-    }
-    .project-stack {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
-    }
-    .stack-tag {
-      font-size: 10px; font-weight: 700;
-      color: var(--accent);
-      border: 1px solid var(--accent-d);
-      background: rgba(200,169,110,0.06);
-      padding: 3px 9px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .project-desc { color: var(--muted); font-size: 13px; line-height: 1.8; }
-
-    .list-item {
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 14px;
-      font-size: 14px; color: var(--off);
-    }
-    .list-item:last-child { border-bottom: none; }
-    .list-num {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 1px; color: var(--faint);
-      min-width: 18px; padding-top: 3px;
-    }
-    .award-name { font-weight: 600; color: var(--white); }
-    .award-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
-
-    .ref-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      padding: 24px 26px;
-      transition: border-color 0.3s;
-    }
-    .ref-card:hover { border-color: var(--border-hi); }
-    .ref-initial {
-      width: 38px; height: 38px;
-      background: var(--bg-4);
-      border: 1px solid var(--border-hi);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .ref-name { font-weight: 600; color: var(--white); font-size: 15px; margin-bottom: 3px; }
-    .ref-role { color: var(--muted); font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
-    .ref-contact { display: flex; flex-direction: column; gap: 5px; }
-    .ref-contact a {
-      color: var(--faint); font-size: 12px;
-      text-decoration: none; letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
-    .ref-contact a:hover { color: var(--accent); }
-
-    footer {
-      text-align: center;
-      padding: 28px 20px;
-      border-top: 1px solid var(--border);
-      color: var(--faint);
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:760px){
+  .about-grid,.skills-grid,.projects-grid,.certs-grid,.refs-grid{grid-template-columns:1fr}
+  .project-card.wide{grid-column:auto}
+  .nav-links{
+    display:none;flex-direction:column;position:absolute;
+    top:64px;left:0;right:0;background:rgba(8,11,18,0.97);
+    backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:8px 0;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 5%;border-bottom:1px solid var(--border)}
+  .nav-links a::after{display:none}
+  .nav-toggle{display:flex}
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="monogram">TU</div>
-    <h1>Thinuri Uthsarani</h1>
-    <div class="header-rule"></div>
-    <p class="subtitle">Applied Data Science &nbsp;&middot;&nbsp; Analytics &nbsp;&middot;&nbsp; Machine Learning</p>
-    <div class="contact-row">
-      <span><span class="dot"></span>070-240-5404</span>
-      <a href="mailto:thinuriuthsarani@gmail.com"><span class="dot"></span>thinuriuthsarani@gmail.com</a>
-      <a href="https://linkedin.com/in/thinuri-uthsarani-0740572b9" target="_blank"><span class="dot"></span>LinkedIn</a>
-      <a href="https://github.com/thinuriuthsarani" target="_blank"><span class="dot"></span>GitHub</a>
+<nav>
+  <div class="nav-logo">&lt;TU /&gt;</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Open to Internship Opportunities
     </div>
-  </header>
+    <p class="hero-greeting">Hello, I'm</p>
+    <h1 class="hero-name">Thinuri<br><span>Uthsarani</span></h1>
+    <p class="hero-role">Applied Data Science Undergraduate</p>
+    <p class="hero-desc">
+      Motivated data science student with hands-on experience in Python, R, SQL, and Power BI.
+      Skilled in predictive modeling, data cleaning, and dashboard development —
+      transforming raw data into clear, actionable insights.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Certificates</div>
+      </div>
+      <div>
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <nav>
-    <a href="#profile">Profile</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#credentials">Credentials</a>
-    <a href="#references">References</a>
-  </nav>
-
-  <main>
-    <div class="container">
-
-      <section id="profile" class="reveal">
-        <p class="section-title">Profile</p>
-        <div class="card">
-          <p class="profile-text">Motivated Applied Data Science undergraduate with hands-on experience in Python, R, SQL, and Power BI. Skilled in data cleaning, predictive modeling, and dashboard development, with demonstrated ability to deliver actionable insights through end-to-end analytics projects. Actively seeking a data science or analytics internship to apply technical skills to real-world business problems.</p>
-        </div>
-      </section>
-
-      <section id="skills" class="reveal">
-        <p class="section-title">Skills</p>
-        <div class="grid-two">
-          <div class="card">
-            <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:20px;">Technical</p>
-            <div class="skill-cat">
-              <p class="skill-cat-label">Programming</p>
-              <div class="tags">
-                <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span>
-              </div>
-            </div>
-            <div class="skill-cat">
-              <p class="skill-cat-label">Visualization</p>
-              <div class="tags">
-                <span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">Plotly</span>
-              </div>
-            </div>
-            <div class="skill-cat">
-              <p class="skill-cat-label">Data Analysis</p>
-              <div class="tags">
-                <span class="tag">Data Cleaning</span><span class="tag">EDA</span><span class="tag">Feature Engineering</span><span class="tag">Predictive Modeling</span>
-              </div>
-            </div>
-            <div class="skill-cat">
-              <p class="skill-cat-label">Databases</p>
-              <div class="tags"><span class="tag">SQL Server</span></div>
-            </div>
-          </div>
-          <div class="card">
-            <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:20px;">Soft Skills</p>
-            <div class="tags" style="gap:8px;">
-              <span class="tag soft">Teamwork</span>
-              <span class="tag soft">Data Visualization</span>
-              <span class="tag soft">Effective Communication</span>
-              <span class="tag soft">Time Management</span>
-              <span class="tag soft">Critical Thinking</span>
-              <span class="tag soft">Leadership</span>
-            </div>
+<!-- ABOUT -->
+<section class="section" id="about" style="background:var(--bg2)">
+  <div class="section-inner">
+    <p class="section-label reveal">About</p>
+    <h2 class="section-title reveal">Who I Am</h2>
+    <div class="section-line reveal"></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm an Applied Data Science undergraduate at General Sir John Kotelawala Defence University, passionate about transforming complex datasets into clear, actionable insights.</p>
+        <p>My work spans the full analytics pipeline — from data wrangling and exploratory analysis through to machine learning model development and interactive dashboard design.</p>
+        <p>I enjoy solving real-world business problems with data and am actively seeking a data science or analytics internship where I can apply my skills and grow as a practitioner.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card reveal d1">
+          <div class="about-card-icon">🎓</div>
+          <div>
+            <div class="about-card-label">Degree</div>
+            <div class="about-card-value">BSc Applied Data Science</div>
           </div>
         </div>
-      </section>
-
-      <section id="education" class="reveal">
-        <p class="section-title">Education</p>
-        <div class="card">
-          <div class="edu-item">
-            <div class="edu-header">
-              <span class="edu-degree">BSc in Applied Data Science and Communication</span>
-              <span class="edu-year">2026</span>
-            </div>
-            <p class="edu-institution">General Sir John Kotelawala Defence University &mdash; Colombo</p>
-            <p class="edu-courses">Fundamentals of Mathematics and Statistics &middot; Programming with Python and R &middot; SQL for Data Science and Cloud Databases &middot; Data Mining &middot; Applied Machine Learning &middot; Data Visualization and Storytelling &middot; Business Economics and Management &middot; Research Methods &middot; Industry-Sponsored Dissertation &middot; Industrial Training</p>
-          </div>
-          <div class="edu-item">
-            <div class="edu-header">
-              <span class="edu-degree">Short Course in Human Resource Management</span>
-              <span class="edu-year">Apr &ndash; Oct 2023</span>
-            </div>
-            <p class="edu-institution">The Open University of Sri Lanka &mdash; Matara</p>
-            <p class="edu-courses">Training and development strategies, employee skill enhancement, organizational effectiveness, and workforce competency alignment. Final project analyzed the mutual impact of training programs on employee career growth and organizational performance.</p>
-          </div>
-          <div class="edu-item">
-            <div class="edu-header">
-              <span class="edu-degree">G.C.E. Advanced Level</span>
-              <span class="edu-year">2010 &ndash; 2022</span>
-            </div>
-            <p class="edu-institution">Sujatha Vidyalaya &mdash; Matara</p>
+        <div class="about-card reveal d2">
+          <div class="about-card-icon">📍</div>
+          <div>
+            <div class="about-card-label">Location</div>
+            <div class="about-card-value">Colombo, Sri Lanka</div>
           </div>
         </div>
-      </section>
-
-      <section id="projects" class="reveal">
-        <p class="section-title">Projects</p>
-        <div class="grid-two">
-          <div class="project-card">
-            <p class="project-num">01</p>
-            <p class="project-title">Olympic Analytics Dashboard</p>
-            <div class="project-stack">
-              <span class="stack-tag">SQL</span><span class="stack-tag">Power BI</span>
-            </div>
-            <p class="project-desc">Built an interactive dashboard comparing Summer and Winter Olympic performance, analyzing country-wise medals, participant trends, and seasonal distributions. Delivered clear insights into global Olympic trends using data visualization and analytical techniques.</p>
-          </div>
-          <div class="project-card">
-            <p class="project-num">02</p>
-            <p class="project-title">Customer Churn Analysis &amp; Prediction</p>
-            <div class="project-stack">
-              <span class="stack-tag">SQL</span><span class="stack-tag">Python</span><span class="stack-tag">Power BI</span>
-            </div>
-            <p class="project-desc">Developed a machine learning project to analyze telecom customer data and predict churn. Used SQL for data preparation, Python for model development, and Power BI for interactive dashboards. Identified key churn drivers to support data-driven retention strategies.</p>
-          </div>
-          <div class="project-card" style="grid-column:1/-1;">
-            <p class="project-num">03</p>
-            <p class="project-title">Association Rule Mining &amp; Logistic Regression</p>
-            <div class="project-stack">
-              <span class="stack-tag">SQL</span><span class="stack-tag">R</span><span class="stack-tag">Python</span><span class="stack-tag">Plotly</span><span class="stack-tag">CRISP-DM</span>
-            </div>
-            <p class="project-desc">Full data mining project applying Association Rule Mining and Logistic Regression on real-world datasets. Performed data cleaning, exploratory analysis, model building, parameter tuning, and evaluation. Developed an interactive Plotly dashboard integrating model outputs with an accompanying walkthrough video. Followed the CRISP-DM methodology with thorough documentation across all project phases.</p>
+        <div class="about-card reveal d3">
+          <div class="about-card-icon">🏅</div>
+          <div>
+            <div class="about-card-label">Achievement</div>
+            <div class="about-card-value">President's Guide Award 2022</div>
           </div>
         </div>
-      </section>
-
-      <section id="credentials" class="reveal">
-        <p class="section-title">Credentials</p>
-        <div class="grid-two">
-          <div class="card">
-            <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Certificates</p>
-            <div class="list-item"><span class="list-num">01</span><span>Python for Beginners &mdash; University of Moratuwa</span></div>
-            <div class="list-item"><span class="list-num">02</span><span>Web Design for Beginners &mdash; University of Moratuwa</span></div>
-            <div class="list-item"><span class="list-num">03</span><span>Certificate of Participation &mdash; &ldquo;Sentiment Seekers&rdquo; Data Odyssey Exhibition</span></div>
-            <div class="list-item"><span class="list-num">04</span><span>Foundations of Project Management &mdash; University of Moratuwa</span></div>
-          </div>
-          <div class="card">
-            <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Awards</p>
-            <div class="list-item">
-              <span class="list-num">01</span>
-              <span>
-                <p class="award-name">President&rsquo;s Guide Award</p>
-                <p class="award-sub">Sri Lanka &middot; 2022</p>
-              </span>
-            </div>
+        <div class="about-card reveal d4">
+          <div class="about-card-icon">📊</div>
+          <div>
+            <div class="about-card-label">Focus</div>
+            <div class="about-card-value">Data Science &amp; Analytics</div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section id="references" class="reveal">
-        <p class="section-title">References</p>
-        <div class="grid-two">
-          <div class="ref-card">
-            <div class="ref-initial">CS</div>
-            <p class="ref-name">Dr Charith Silva</p>
-            <p class="ref-role">Senior Lecturer<br>General Sir John Kotelawala Defence University</p>
-            <div class="ref-contact">
-              <a href="mailto:charithsilva@kdu.ac.lk">charithsilva@kdu.ac.lk</a>
-              <a href="tel:+447920206338">+44 7920 206338</a>
-            </div>
-          </div>
-          <div class="ref-card">
-            <div class="ref-initial">CW</div>
-            <p class="ref-name">Ms Chamodhi Wickramasingha</p>
-            <p class="ref-role">Lecturer<br>General Sir John Kotelawala Defence University</p>
-            <div class="ref-contact">
-              <a href="mailto:wickramasinghe.bct@kdu.ac.lk">wickramasinghe.bct@kdu.ac.lk</a>
-              <a href="tel:+94713612792">+94 71 361 2792</a>
-            </div>
-          </div>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">Expertise</p>
+    <h2 class="section-title reveal">Skills &amp; Technologies</h2>
+    <div class="section-line reveal"></div>
+    <div class="skills-grid">
+      <div class="skill-block reveal">
+        <div class="skill-block-title">Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">SQL</span>
         </div>
-      </section>
+      </div>
+      <div class="skill-block reveal d1">
+        <div class="skill-block-title">Visualization &amp; BI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">Plotly</span>
+        </div>
+      </div>
+      <div class="skill-block reveal d2">
+        <div class="skill-block-title">Data Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Cleaning</span>
+          <span class="skill-tag">EDA</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">Predictive Modeling</span>
+        </div>
+      </div>
+      <div class="skill-block reveal d3">
+        <div class="skill-block-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Critical Thinking</span>
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Time Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education" style="background:var(--bg2)">
+  <div class="section-inner">
+    <p class="section-label reveal">Background</p>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="section-line reveal"></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-year">2022 – 2026 (Expected)</div>
+        <div class="tl-card">
+          <div class="tl-degree">BSc in Applied Data Science and Communication</div>
+          <div class="tl-institution">General Sir John Kotelawala Defence University — Colombo</div>
+          <div class="tl-courses">Fundamentals of Mathematics &amp; Statistics · Programming with Python and R · SQL for Data Science and Cloud Databases · Data Mining · Applied Machine Learning · Data Visualization and Storytelling · Business Economics and Management · Research Methods · Industry-Sponsored Dissertation · Industrial Training</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">April 2023 – October 2023</div>
+        <div class="tl-card">
+          <div class="tl-degree">Short Course in Human Resource Management</div>
+          <div class="tl-institution">The Open University of Sri Lanka — Matara</div>
+          <div class="tl-courses">Training and development strategies, employee skill enhancement, organizational effectiveness, and workforce competency alignment. Final project analyzed the mutual impact of training programs on employee career growth and organizational performance.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2010 – 2022</div>
+        <div class="tl-card">
+          <div class="tl-degree">G.C.E. Advanced Level</div>
+          <div class="tl-institution">Sujatha Vidyalaya — Matara</div>
+        </div>
+      </div>
 
     </div>
-  </main>
+  </div>
+</section>
 
-  <footer>
-    <p>Thinuri Uthsarani &nbsp;&middot;&nbsp; Applied Data Science Portfolio &nbsp;&middot;&nbsp; 2025</p>
-  </footer>
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <p class="section-label reveal">Work</p>
+    <h2 class="section-title reveal">Featured Projects</h2>
+    <div class="section-line reveal"></div>
+    <div class="projects-grid">
 
-  <script>
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      <div class="project-card reveal">
+        <div class="project-num">01 — Analytics</div>
+        <div class="project-name">Olympic Analytics Dashboard</div>
+        <div class="project-stack">
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">Power BI</span>
+        </div>
+        <div class="project-desc">Built an interactive dashboard comparing Summer and Winter Olympic performance. Analyzed country-wise medal tallies, participant trends, and seasonal distributions to surface clear insights into global Olympic patterns.</div>
+      </div>
 
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.08) + 's';
-      revealObserver.observe(el);
+      <div class="project-card reveal d1">
+        <div class="project-num">02 — Machine Learning</div>
+        <div class="project-name">Customer Churn Prediction</div>
+        <div class="project-stack">
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">Power BI</span>
+        </div>
+        <div class="project-desc">End-to-end ML project predicting telecom customer churn. SQL for data preparation, Python for model development, Power BI dashboards to surface key churn drivers and support data-driven retention strategies.</div>
+      </div>
+
+      <div class="project-card wide reveal d2">
+        <div class="project-num">03 — Data Mining</div>
+        <div class="project-name">Association Rule Mining &amp; Logistic Regression</div>
+        <div class="project-stack">
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">R</span>
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">Plotly</span>
+          <span class="stack-pill">CRISP-DM</span>
+        </div>
+        <div class="project-desc">Full data mining project applying Association Rule Mining and Logistic Regression on real-world datasets. Covered data cleaning, EDA, model building, parameter tuning, and evaluation. Built an interactive Plotly dashboard integrating model outputs with a video walkthrough. Strictly followed the CRISP-DM methodology throughout.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section class="section" id="certificates" style="background:var(--bg2)">
+  <div class="section-inner">
+    <p class="section-label reveal">Credentials</p>
+    <h2 class="section-title reveal">Certificates &amp; Awards</h2>
+    <div class="section-line reveal"></div>
+
+    <div class="certs-grid">
+      <div class="cert-item reveal">
+        <div class="cert-icon">📜</div>
+        <div>
+          <div class="cert-name">Python for Beginners</div>
+          <div class="cert-org">University of Moratuwa</div>
+        </div>
+      </div>
+      <div class="cert-item reveal d1">
+        <div class="cert-icon">📜</div>
+        <div>
+          <div class="cert-name">Web Design for Beginners</div>
+          <div class="cert-org">University of Moratuwa</div>
+        </div>
+      </div>
+      <div class="cert-item reveal d2">
+        <div class="cert-icon">📜</div>
+        <div>
+          <div class="cert-name">Certificate of Participation</div>
+          <div class="cert-org">"Sentiment Seekers" — Data Odyssey Exhibition</div>
+        </div>
+      </div>
+      <div class="cert-item reveal d3">
+        <div class="cert-icon">📜</div>
+        <div>
+          <div class="cert-name">Foundations of Project Management</div>
+          <div class="cert-org">University of Moratuwa</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="award-block reveal">
+      <div class="award-icon-wrap">🏅</div>
+      <div>
+        <div class="award-title">President's Guide Award</div>
+        <div class="award-sub">Sri Lanka &nbsp;·&nbsp; 2022 — One of scouting's highest national honours</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="section" id="references">
+  <div class="section-inner">
+    <p class="section-label reveal">Endorsements</p>
+    <h2 class="section-title reveal">References</h2>
+    <div class="section-line reveal"></div>
+    <div class="refs-grid">
+
+      <div class="ref-card reveal">
+        <div class="ref-initials">CS</div>
+        <div class="ref-name">Dr Charith Silva</div>
+        <div class="ref-role">Senior Lecturer<br>General Sir John Kotelawala Defence University</div>
+        <div class="ref-contacts">
+          <a href="mailto:charithsilva@kdu.ac.lk">charithsilva@kdu.ac.lk</a>
+          <a href="tel:+447920206338">+44 7920 206338</a>
+        </div>
+      </div>
+
+      <div class="ref-card reveal d1">
+        <div class="ref-initials">CW</div>
+        <div class="ref-name">Ms Chamodhi Wickramasingha</div>
+        <div class="ref-role">Lecturer<br>General Sir John Kotelawala Defence University</div>
+        <div class="ref-contacts">
+          <a href="mailto:wickramasinghe.bct@kdu.ac.lk">wickramasinghe.bct@kdu.ac.lk</a>
+          <a href="tel:+94713612792">+94 71 361 2792</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:var(--bg2)">
+  <div class="section-inner">
+    <p class="section-label reveal">Connect</p>
+    <h2 class="section-title reveal">Get in Touch</h2>
+    <div class="section-line reveal"></div>
+    <p style="color:var(--muted);font-size:15px;max-width:500px;margin-bottom:32px" class="reveal">
+      I'm open to internship opportunities, collaborative projects, or a conversation about data science. Feel free to reach out.
+    </p>
+    <div class="contact-chips">
+      <a href="tel:+94702405404" class="chip reveal">
+        <span>📞</span> 070-240-5404
+      </a>
+      <a href="mailto:thinuriuthsarani@gmail.com" class="chip reveal d1">
+        <span>✉️</span> thinuriuthsarani@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/thinuri-uthsarani-0740572b9" target="_blank" class="chip reveal d2">
+        <span>🔗</span> LinkedIn
+      </a>
+      <a href="https://github.com/thinuriuthsarani" target="_blank" class="chip reveal d3">
+        <span>💻</span> GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 <span>Thinuri Uthsarani</span> &nbsp;·&nbsp; Built with HTML &amp; CSS &nbsp;·&nbsp; Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+(function(){
+  // Mobile nav
+  var toggle=document.getElementById('navToggle');
+  var links=document.getElementById('navLinks');
+  toggle.addEventListener('click',function(){links.classList.toggle('open')});
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click',function(){links.classList.remove('open')});
+  });
+
+  // Scroll reveal for .reveal
+  var revealObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el)});
+
+  // Timeline items
+  var tlObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.15});
+  document.querySelectorAll('.tl-item').forEach(function(el){tlObs.observe(el)});
+
+  // Active nav link highlight
+  var sections=document.querySelectorAll('section[id]');
+  var navAs=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',function(){
+    var pos=window.scrollY+80;
+    sections.forEach(function(s){
+      if(pos>=s.offsetTop&&pos<s.offsetTop+s.offsetHeight){
+        navAs.forEach(function(a){a.style.color=''});
+        var active=document.querySelector('.nav-links a[href="#'+s.id+'"]');
+        if(active)active.style.color='var(--white)';
+      }
     });
-
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(link.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    const navLinks = document.querySelectorAll('nav a');
-    const navObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const a = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-          if (a) a.classList.add('active');
-        }
-      });
-    }, { threshold: 0.35 });
-
-    document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
-  </script>
-
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
-
