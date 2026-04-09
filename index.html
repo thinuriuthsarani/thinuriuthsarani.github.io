@@ -1,243 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thinu Uthsarani | Portfolio</title>
-
-<!-- AOS Library for scroll animations -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-<style>
-  body {
-    margin:0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #f5f5f5;
-    color: #333;
-  }
-
-  header {
-    background: #1e90ff;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-  }
-
-  header h1 {
-    font-size: 2.8em;
-    margin-bottom: 10px;
-  }
-
-  header p {
-    font-size: 1.3em;
-  }
-
-  nav {
-    background: #333;
-  }
-
-  nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    flex-wrap: wrap;
-  }
-
-  nav ul li {
-    margin: 10px 20px;
-  }
-
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-
-  nav ul li a:hover {
-    color: #1e90ff;
-  }
-
-  section {
-    padding: 80px 20px;
-    max-width: 1000px;
-    margin: auto;
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1e90ff;
-  }
-
-  .about, .skills, .projects, .contact {
-    background: white;
-    margin-bottom: 40px;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  }
-
-  ul {
-    padding-left: 20px;
-  }
-
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .skills-list li {
-    background: #1e90ff;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin: 8px;
-    transition: 0.3s;
-    list-style: none;
-  }
-
-  .skills-list li:hover {
-    background: #0d6efd;
-    cursor: default;
-  }
-
-  .project-card {
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: 0.3s;
-    background: #f0f8ff;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  }
-
-  .project-card h3 {
-    margin-bottom: 10px;
-    color: #333;
-  }
-
-  .project-card p {
-    font-size: 0.95em;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #1e90ff;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 10px;
-    transition: 0.3s;
-  }
-
-  .btn:hover {
-    background: #0d6efd;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #333;
-    color: white;
-  }
-
-  /* Responsive */
-  @media(max-width: 768px){
-    nav ul { flex-direction: column; }
-    nav ul li { margin: 10px 0; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinuri Uthsarani | Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0a192f;
+      color: #ccd6f6;
+    }
+    header {
+      background: #112240;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 { margin: 0; }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #64ffda;
+      border-bottom: 1px solid #233554;
+      padding-bottom: 5px;
+    }
+    a { color: #64ffda; text-decoration: none; }
+    ul { line-height: 1.8; }
+    .card {
+      background: #112240;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Header -->
-<header data-aos="fade-down">
-  <h1>Hi, I'm Thinu Uthsarani 👋</h1>
-  <p>Aspiring Data Scientist | Python, R, Machine Learning</p>
+<header>
+  <h1>THINURI UTHSARANI</h1>
+  <p>Applied Data Science Undergraduate</p>
+  <p>📞 070-240-5404 | ✉ thinuriuthsarani@gmail.com</p>
+  <p>
+    <a href="https://linkedin.com/in/thinuri-uthsarani-0740572b9">LinkedIn</a> |
+    <a href="https://github.com/thinuriuthsarani">GitHub</a>
+  </p>
 </header>
 
-<!-- Navigation -->
-<nav data-aos="fade-up">
+<section>
+  <h2>Profile</h2>
+  <p>Motivated Applied Data Science undergraduate with hands-on experience in Python, R, SQL and Power BI. Skilled in data cleaning, predictive modeling, and dashboard development, delivering actionable insights through end-to-end analytics projects.</p>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
   <ul>
-    <li><a href="#about">About Me</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- About Me -->
-<section id="about" class="about" data-aos="fade-right">
-  <h2>About Me</h2>
-  <p>I'm a Data Science undergraduate with experience in machine learning, data analysis, and visualization. I enjoy transforming raw data into actionable insights and building predictive models to solve real-world problems.</p>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="skills" data-aos="fade-left">
-  <h2>Skills</h2>
-  <ul class="skills-list">
-    <li>Python</li>
-    <li>R</li>
-    <li>Pandas</li>
-    <li>Matplotlib</li>
-    <li>Seaborn</li>
-    <li>ggplot2</li>
-    <li>Machine Learning</li>
-    <li>Logistic Regression</li>
-    <li>KNN</li>
-    <li>Random Forest</li>
+    <li>Python, R, SQL</li>
+    <li>Power BI, Excel</li>
+    <li>Data Cleaning, EDA, Feature Engineering</li>
+    <li>SQL Server</li>
   </ul>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="projects" data-aos="fade-up">
+<section>
+  <h2>Soft Skills</h2>
+  <ul>
+    <li>Teamwork</li>
+    <li>Effective Communication</li>
+    <li>Time Management</li>
+    <li>Critical Thinking</li>
+    <li>Leadership</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="card">
+    <h3>General Sir John Kotelawala Defence University</h3>
+    <p>BSc in Applied Data Science and Communication (2026)</p>
+  </div>
+  <div class="card">
+    <h3>Open University of Sri Lanka</h3>
+    <p>Short Course in Human Resource Management (2023)</p>
+  </div>
+</section>
+
+<section>
   <h2>Projects</h2>
-
-  <div class="project-card" data-aos="zoom-in">
-    <h3>Stroke Prediction (Logistic Regression)</h3>
-    <p>Analyzed a healthcare dataset to predict the likelihood of stroke using logistic regression. Achieved accuracy of 85% and visualized important risk factors.</p>
+  <div class="card">
+    <h3>Olympic Analytics Dashboard</h3>
+    <p>Built an interactive dashboard analyzing Olympic data using SQL and Power BI.</p>
   </div>
-
-  <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-    <h3>KNN Classification (Iris Dataset)</h3>
-    <p>Built a K-Nearest Neighbors classifier to predict iris species. Explored dataset, performed normalization, and achieved high accuracy using k=5.</p>
+  <div class="card">
+    <h3>Customer Churn Prediction</h3>
+    <p>Developed a machine learning model to predict churn using Python, SQL, and Power BI.</p>
   </div>
-
-  <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-    <h3>Occupancy Detection System</h3>
-    <p>Predicted room occupancy using sensor data (temperature, CO2, light, humidity) with KNN. Demonstrated real-time prediction capability for smart buildings.</p>
+  <div class="card">
+    <h3>Association Rule Mining & Logistic Regression</h3>
+    <p>Applied data mining techniques and built dashboards using R and Plotly.</p>
   </div>
-
 </section>
 
-<!-- Contact -->
-<section id="contact" class="contact" data-aos="fade-up">
-  <h2>Contact Me</h2>
-  <p>Email: <a href="mailto:41-adc-0001@example.com">41-adc-0001@example.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank">linkedin.com/in/your-linkedin</a></p>
-  <a href="mailto:41-adc-0001@example.com" class="btn">Email Me</a>
+<section>
+  <h2>Certificates</h2>
+  <ul>
+    <li>Python for Beginners – University of Moratuwa</li>
+    <li>Web Design for Beginners – University of Moratuwa</li>
+    <li>Data Odyssey Participation</li>
+    <li>Foundations of Project Management</li>
+  </ul>
 </section>
 
-<!-- Footer -->
-<footer data-aos="fade-up">
-  &copy; 2026 Thinu Uthsarani | Built with ❤️ using GitHub Pages
-</footer>
+<section>
+  <h2>Awards</h2>
+  <p>President’s Guide Award – Sri Lanka (2022)</p>
+</section>
 
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000, // animation duration in ms
-    once: true      // animation happens only once
-  });
-</script>
+<section>
+  <h2>References</h2>
+  <p>Available upon request</p>
+</section>
 
 </body>
 </html>
+
