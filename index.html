@@ -512,6 +512,7 @@ footer span{color:var(--teal)}
 </section>
 
 <!-- PROJECTS -->
+  
 <section class="section" id="projects">
   <div class="section-inner">
     <p class="eyebrow reveal">Work</p>
@@ -647,8 +648,14 @@ document.querySelectorAll('.edu-item').forEach(function(el,i){el.style.transitio
 var bo=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.querySelectorAll('.skill-fill').forEach(function(f){f.style.width=f.dataset.pct+'%'})})},{threshold:0.3});
 var ss=document.getElementById('skills');if(ss)bo.observe(ss);
 
-/* PROJECT GLOW */
-document.querySelectorAll('.project-card').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')})});
+/* ── PROJECT CARD GLOW ───────────────────────────────── */
+document.querySelectorAll('.proj-card').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
 
 /* SCROLL TOP */
 var stb=document.getElementById('scrollTop');
