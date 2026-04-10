@@ -510,8 +510,6 @@ footer span{color:var(--teal)}
     </div>
   </div>
 </section>
-
-<!-- PROJECTS -->
   <!-- ── PROJECTS ───────────────────────────────────────────── -->
 <section class="section bg2" id="projects">
   <div class="inner">
@@ -590,6 +588,7 @@ footer span{color:var(--teal)}
     </div>
   </div>
 </section>
+  
 
 <!-- CONTACT -->
 <section class="section" id="contact">
@@ -684,32 +683,13 @@ var bo=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isInterse
 var ss=document.getElementById('skills');if(ss)bo.observe(ss);
 
 /* ── PROJECT CARD GLOW ───────────────────────────────── */
-.proj-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px
-}
-
-.proj-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:all .32s;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-}
-
-.proj-card:hover{
-  border-color:rgba(91,156,246,.3);
-  transform:translateY(-7px);
-  box-shadow:0 24px 56px rgba(0,0,0,.55)
-}
-
-.proj-card.wide{
-  grid-column:1/-1
-}
+document.querySelectorAll('.proj-card').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
 
 /* top gradient strip */
 .proj-card::before{
