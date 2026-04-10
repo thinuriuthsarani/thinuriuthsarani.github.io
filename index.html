@@ -684,14 +684,94 @@ var bo=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isInterse
 var ss=document.getElementById('skills');if(ss)bo.observe(ss);
 
 /* ── PROJECT CARD GLOW ───────────────────────────────── */
-document.querySelectorAll('.proj-card').forEach(function(c){
-  c.addEventListener('mousemove',function(e){
-    var r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
-    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
-  });
-});
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px
+}
 
+.proj-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:all .32s;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.proj-card:hover{
+  border-color:rgba(91,156,246,.3);
+  transform:translateY(-7px);
+  box-shadow:0 24px 56px rgba(0,0,0,.55)
+}
+
+.proj-card.wide{
+  grid-column:1/-1
+}
+
+/* top gradient strip */
+.proj-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .38s;
+}
+
+.proj-card:hover::before{
+  transform:scaleX(1)
+}
+
+.pc-strip-blue::before{background:var(--grad-a)}
+.pc-strip-purple::before{background:var(--grad-b)}
+.pc-strip-teal::before{background:var(--grad-c)}
+
+/* glow effect */
+.proj-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(91,156,246,.07) 0%,transparent 55%);
+  opacity:0;
+  transition:opacity .3s;
+}
+
+.proj-card:hover::after{
+  opacity:1
+}
+
+.pc-img-placeholder{
+  width:100%;
+  height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:52px;
+}
+
+.pc-body{padding:22px}
+
+.pc-name{
+  font-size:17px;
+  font-weight:700;
+}
+
+.pc-desc{
+  font-size:13px;
+  color:var(--muted2);
+}
+
+.pc-pill{
+  font-size:10px;
+  padding:3px 10px;
+  border-radius:20px;
+}
 /* SCROLL TOP */
 var stb=document.getElementById('scrollTop');
 window.addEventListener('scroll',function(){stb.classList.toggle('visible',window.scrollY>400)},{passive:true});
