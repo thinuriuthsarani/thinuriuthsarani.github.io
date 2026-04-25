@@ -6,17 +6,63 @@
 <title>Thinuri Uthsarani</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#03050e;--bg2:#050810;--card:#090d1c;--card2:#0c1122;
-  --border:rgba(255,255,255,0.05);--border2:rgba(255,255,255,0.1);
-  --blue:#6ea8fe;--blue2:#4a90d9;--teal:#2dd4bf;--purple:#c4b5fd;--green:#34d399;--amber:#fbbf24;
-  --white:#eef2ff;--muted:#3d5270;--muted2:#637fa3;
-  --mono:'DM Mono',monospace;--sans:'Instrument Sans',sans-serif;--display:'Syne',sans-serif;
-  --glow-blue:rgba(110,168,254,0.12);--glow-teal:rgba(45,212,191,0.1);
+*,*::before,*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden;cursor:none}
+
+:root{
+  --bg:#03050e;
+  --bg2:#050810;
+  --card:#090d1c;
+  --card2:#0c1122;
+  --border:rgba(255,255,255,0.05);
+  --border2:rgba(255,255,255,0.1);
+  --blue:#6ea8fe;
+  --blue2:#4a90d9;
+  --teal:#2dd4bf;
+  --purple:#c4b5fd;
+  --green:#34d399;
+  --amber:#fbbf24;
+  --white:#eef2ff;
+  --muted:#3d5270;
+  --muted2:#637fa3;
+  --mono:'DM Mono',monospace;
+  --sans:'Instrument Sans',sans-serif;
+  --display:'Syne',sans-serif;
+  --glow-blue:rgba(110,168,254,0.12);
+  --glow-teal:rgba(45,212,191,0.1);
+}
+.proj-ss-inner {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.proj-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* IMPORTANT: shows full PNG */
+  display: block;
+}
+
+/* PAGE SETTINGS */
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.7;
+  overflow-x:hidden;
+  cursor:none;
+}
 
 /* ─── CURSOR ─── */
 #cur-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--teal);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background .15s,transform .1s}
