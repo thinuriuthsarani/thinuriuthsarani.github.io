@@ -871,7 +871,59 @@ function type(){
   setTimeout(type,del?45:75);
 }
 type();
+  
+/* CONSTELLATION LINES */
+function drawConstellationLines(){
+  var svg = document.getElementById('consvg');
+  var con = document.getElementById('constellation');
+  if(!svg || !con) return;
+  var cr = con.getBoundingClientRect();
+  var cx = 210, cy = 210;
+  var pills = con.querySelectorAll('.pill');
+  svg.innerHTML = '';
+  var colors = ['rgba(45,212,191,','rgba(110,168,254,','rgba(45,212,191,','rgba(196,181,253,','rgba(110,168,254,','rgba(52,211,153,','rgba(110,168,254,'];
+  pills.forEach(function(pill, i){
+    var pr = pill.getBoundingClientRect();
+    var px = pr.left - cr.left + pr.width/2;
+    var py = pr.top - cr.top + pr.height/2;
+    var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',cx); line.setAttribute('y1',cy);
+    line.setAttribute('x2',px); line.setAttribute('y2',py);
+    line.setAttribute('stroke',colors[i]+'0.13)');
+    line.setAttribute('stroke-width','0.8');
+    line.setAttribute('stroke-dasharray','4 6');
+    var anim = document.createElementNS('http://www.w3.org/2000/svg','animate');
+    anim.setAttribute('attributeName','stroke-dashoffset');
+    anim.setAttribute('from','0'); anim.setAttribute('to','100');
+    anim.setAttribute('dur',(4+i*0.5)+'s'); anim.setAttribute('repeatCount','indefinite');
+    line.appendChild(anim);
+    svg.appendChild(line);
+    var dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('cx',px); dot.setAttribute('cy',py);
+    dot.setAttribute('r','2'); dot.setAttribute('fill',colors[i]+'0.4)');
+    svg.appendChild(dot);
+  });
+}
 
+/* CONSTELLATION DRIFTING MICRO-DOTS */
+function spawnConstellationDots(){
+  var con = document.getElementById('constellation');
+  if(!con) return;
+  setInterval(function(){
+    var d = document.createElement('div');
+    d.className = 'dot';
+    var sz = Math.random()*2+1;
+    var cols = ['rgba(45,212,191,','rgba(110,168,254,','rgba(196,181,253,'];
+    var col = cols[Math.floor(Math.random()*cols.length)];
+    d.style.cssText = 'width:'+sz+'px;height:'+sz+'px;background:'+col+'0.5);left:'+(Math.random()*380+20)+'px;bottom:20px;animation-duration:'+(3+Math.random()*4)+'s';
+    con.appendChild(d);
+    setTimeout(function(){d.remove()}, 7000);
+  }, 700);
+}
+
+setTimeout(drawConstellationLines, 300);
+window.addEventListener('resize', drawConstellationLines);
+spawnConstellationDots();
 })();
 </script>
 </body>
