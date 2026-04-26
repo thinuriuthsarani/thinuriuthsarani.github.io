@@ -21,7 +21,110 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden;cursor:none}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(110,168,254,.25);border-radius:3px}
+  
+/* ── CONSTELLATION ── */
+.constellation{
+  position:relative;
+  width:420px;height:420px;
+  display:flex;align-items:center;justify-content:center;
+}
+.glow-core{
+  position:absolute;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(45,212,191,.07) 0%,rgba(110,168,254,.04) 40%,transparent 70%);
+  animation:breathe 4s ease-in-out infinite;
+}
+.glow-outer{
+  position:absolute;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(110,168,254,.03) 0%,transparent 65%);
+  animation:breathe 6s ease-in-out infinite reverse;
+}
+.constellation-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 
+.center-node{
+  position:absolute;width:52px;height:52px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,rgba(45,212,191,.18),rgba(9,13,28,.9));
+  border:1px solid rgba(45,212,191,.35);
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;
+  box-shadow:0 0 0 8px rgba(45,212,191,.04),0 0 28px rgba(45,212,191,.12),0 0 60px rgba(45,212,191,.06);
+  animation:nodePulse 3s ease-in-out infinite;
+}
+.center-node::before{
+  content:'';position:absolute;width:70px;height:70px;border-radius:50%;
+  border:1px dashed rgba(45,212,191,.18);animation:spin 12s linear infinite;
+}
+.center-node::after{
+  content:'';position:absolute;width:90px;height:90px;border-radius:50%;
+  border:1px dashed rgba(110,168,254,.1);animation:spin 20s linear infinite reverse;
+}
+.center-icon{font-size:20px;position:relative;z-index:1;filter:drop-shadow(0 0 8px rgba(45,212,191,.5))}
+
+.pill{
+  position:absolute;display:flex;align-items:center;gap:8px;
+  background:rgba(9,13,28,.75);border:1px solid rgba(255,255,255,.07);
+  border-radius:40px;padding:9px 16px 9px 10px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  white-space:nowrap;z-index:5;opacity:0;
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.pill:hover{transform:scale(1.06) translateY(-3px) !important;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.pill-icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.pill-text{display:flex;flex-direction:column;line-height:1.2}
+.pill-name{font-size:12px;font-weight:600;color:var(--white);letter-spacing:-.2px}
+.pill-sub{font-size:9px;color:var(--muted);font-family:var(--mono);letter-spacing:.3px}
+
+.pill-teal{border-color:rgba(45,212,191,.2);box-shadow:0 0 20px rgba(45,212,191,.05)}
+.pill-teal .pill-icon{background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.2)}
+.pill-teal .pill-name{color:var(--teal)}
+.pill-blue{border-color:rgba(110,168,254,.2);box-shadow:0 0 20px rgba(110,168,254,.05)}
+.pill-blue .pill-icon{background:rgba(110,168,254,.1);border:1px solid rgba(110,168,254,.2)}
+.pill-blue .pill-name{color:var(--blue)}
+.pill-purple{border-color:rgba(196,181,253,.15)}
+.pill-purple .pill-icon{background:rgba(196,181,253,.08);border:1px solid rgba(196,181,253,.18)}
+.pill-purple .pill-name{color:var(--purple)}
+.pill-green{border-color:rgba(52,211,153,.15)}
+.pill-green .pill-icon{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.18)}
+.pill-green .pill-name{color:var(--green)}
+
+/* pill positions */
+.p1{top:18px;left:50%;transform:translateX(-50%)}
+.p2{top:60px;right:10px}
+.p3{top:175px;right:2px}
+.p4{bottom:55px;right:30px}
+.p5{bottom:30px;left:50%;transform:translateX(-50%)}
+.p6{bottom:80px;left:8px}
+.p7{top:130px;left:0px}
+
+/* float + fade-in animations */
+@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes nodePulse{0%,100%{box-shadow:0 0 0 8px rgba(45,212,191,.04),0 0 28px rgba(45,212,191,.12)}50%{box-shadow:0 0 0 14px rgba(45,212,191,.06),0 0 44px rgba(45,212,191,.18)}}
+@keyframes float1{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-9px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes float4{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes float5{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+@keyframes float6{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+@keyframes float7{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeInPill{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+.p1{animation:float1 5s ease-in-out .1s infinite,fadeInPill .7s ease .1s forwards}
+.p2{animation:float2 5.5s ease-in-out .2s infinite,fadeInPill .7s ease .2s forwards}
+.p3{animation:float3 6s ease-in-out .35s infinite,fadeInPill .7s ease .35s forwards}
+.p4{animation:float4 4.8s ease-in-out .5s infinite,fadeInPill .7s ease .5s forwards}
+.p5{animation:float5 5.2s ease-in-out .65s infinite,fadeInPill .7s ease .65s forwards}
+.p6{animation:float6 6.2s ease-in-out .8s infinite,fadeInPill .7s ease .8s forwards}
+.p7{animation:float7 5.7s ease-in-out .95s infinite,fadeInPill .7s ease .95s forwards}
+
+.accent-grid{position:absolute;bottom:12px;left:12px;width:56px;height:56px;opacity:.15}
+.accent-grid line{stroke:var(--teal);stroke-width:.6}
+
+.dot{position:absolute;border-radius:50%;animation:dotDrift linear infinite}
+@keyframes dotDrift{0%{opacity:0;transform:translateY(0)}20%{opacity:.6}80%{opacity:.3}100%{opacity:0;transform:translateY(-60px)}}
+
+/* hide on mobile */
+@media(max-width:900px){.constellation{width:320px;height:320px}}
+@media(max-width:640px){.hero-right{display:none}}
+  
 /* ─── CURSOR ─── */
 #cur-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--teal);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background .15s,transform .1s}
 #cur-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(45,212,191,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
@@ -324,8 +427,60 @@ footer span{color:var(--teal)}
     </div>
 
 <!-- RIGHT SIDE CONTENT -->
+<div class="hero-right">
+  <div class="constellation" id="constellation">
 
+    <!-- background glows -->
+    <div class="glow-outer"></div>
+    <div class="glow-core"></div>
 
+    <!-- SVG connecting lines (drawn by JS) -->
+    <svg class="constellation-svg" viewBox="0 0 420 420" id="consvg"></svg>
+
+    <!-- center node -->
+    <div class="center-node">
+      <span class="center-icon">✦</span>
+    </div>
+
+    <!-- subtle dot-grid accent -->
+    <svg class="accent-grid" viewBox="0 0 56 56">
+      <line x1="0" y1="14" x2="56" y2="14"/><line x1="0" y1="28" x2="56" y2="28"/>
+      <line x1="0" y1="42" x2="56" y2="42"/><line x1="14" y1="0" x2="14" y2="56"/>
+      <line x1="28" y1="0" x2="28" y2="56"/><line x1="42" y1="0" x2="42" y2="56"/>
+    </svg>
+
+    <!-- PILLS -->
+    <div class="pill pill-teal p1">
+      <div class="pill-icon">🐍</div>
+      <div class="pill-text"><span class="pill-name">Python</span><span class="pill-sub">Primary lang</span></div>
+    </div>
+    <div class="pill pill-blue p2">
+      <div class="pill-icon">📊</div>
+      <div class="pill-text"><span class="pill-name">Power BI</span><span class="pill-sub">Dashboards</span></div>
+    </div>
+    <div class="pill pill-teal p3">
+      <div class="pill-icon">🤖</div>
+      <div class="pill-text"><span class="pill-name">Scikit-learn</span><span class="pill-sub">ML models</span></div>
+    </div>
+    <div class="pill pill-purple p4">
+      <div class="pill-icon">🧠</div>
+      <div class="pill-text"><span class="pill-name">LLaMA / Groq</span><span class="pill-sub">Gen AI</span></div>
+    </div>
+    <div class="pill pill-blue p5">
+      <div class="pill-icon">🗄️</div>
+      <div class="pill-text"><span class="pill-name">SQL</span><span class="pill-sub">Data queries</span></div>
+    </div>
+    <div class="pill pill-green p6">
+      <div class="pill-icon">⚡</div>
+      <div class="pill-text"><span class="pill-name">Streamlit</span><span class="pill-sub">ML apps</span></div>
+    </div>
+    <div class="pill pill-blue p7">
+      <div class="pill-icon">🐼</div>
+      <div class="pill-text"><span class="pill-name">Pandas</span><span class="pill-sub">Wrangling</span></div>
+    </div>
+
+  </div>
+</div>
 </section>
 
 <!-- ═══ ABOUT ═══ -->
