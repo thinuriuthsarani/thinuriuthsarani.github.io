@@ -274,7 +274,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* ─── PROJECTS ─── */
 .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;position:relative;display:flex;flex-direction:column}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .5s;position:relative;display:flex;flex-direction:column}
 .project-card::after{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(110,168,254,.06) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
 .project-card:hover::after{opacity:1}
 .project-card:hover{border-color:rgba(110,168,254,.22);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
